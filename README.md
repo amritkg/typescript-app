@@ -13,6 +13,6 @@ On the terminal, run:
 yarn install
 yarn serve
 ```
-
+and then open http://localhost:8080 !
 
 

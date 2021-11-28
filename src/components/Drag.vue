@@ -2,32 +2,41 @@
   <div
     id="drag"
     style="background-color: orange; border: 1px solid black; padding: 5px"
+    align = "left"
   ></div>
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-var length = [11,6,8];
-var letter = ["a","b","c"];
+import { Watch } from "vue-property-decorator";
+var length = [11, 6, 8];
+var letter = ["a", "b", "c"];
 @Options({
   props: {
-    id: Number,
+    tabid: Number,
   },
 })
 export default class Drag extends Vue {
-  id!: number;
+  tabid!: number;
   mounted() {
-    console.log(this.id);
+      this.starter();
+  }
+  @Watch("tabid")
+  starter(): void {
     const drag = document.getElementById("drag")!;
+    drag.innerHTML = "";
     drag.draggable = false;
     var i = 0;
-    for (i = 1; i < length[this.id]; i++) {  
+    for (i = 1; i < length[this.tabid]; i++) {
       const im = document.createElement("img");
-      im.style.padding = "2px";
-      im.src = require("../assets/group_"+letter[this.id]+"/"+letter[this.id]+"-" + i + ".png");
-      console.log(im.src);
-      im.setAttribute("id", letter[this.id] + i);
-      im.style.width = "90px";
-      im.style.height = "relative";
+      im.src = require("../assets/group_" +
+        letter[this.tabid] +
+        "/" +
+        letter[this.tabid] +
+        "-" +
+        i +
+        ".png");
+      im.setAttribute("id", letter[this.tabid] + i);
+      im.setAttribute("class", "im");
       im.draggable = true;
       drag.appendChild(im);
     }
@@ -35,4 +44,9 @@ export default class Drag extends Vue {
 }
 </script>
 <style>
+.im{
+    width: 90px;
+    height: relative;
+    padding: 5px;
+}
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <div id="nav">
-    
+  <div id="nav">   
   </div>
   <router-view />
 </template>
@@ -15,8 +14,6 @@
 }
 
 #nav {
-  padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;
